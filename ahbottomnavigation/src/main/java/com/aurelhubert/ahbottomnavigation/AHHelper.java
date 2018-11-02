@@ -33,14 +33,14 @@ public class AHHelper {
 	 * @return
 	 */
 	public static Drawable getTintDrawable(Drawable drawable, @ColorInt int color, boolean forceTint) {
-		if (forceTint) {
+		if (forceTint && color != 0) {
 			drawable.clearColorFilter();
 			drawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
 			drawable.invalidateSelf();
 			return drawable;
 		}
 		Drawable wrapDrawable = DrawableCompat.wrap(drawable).mutate();
-		DrawableCompat.setTint(wrapDrawable, color);
+		if(color != 0) DrawableCompat.setTint(wrapDrawable, color);
 		return wrapDrawable;
 	}
 
